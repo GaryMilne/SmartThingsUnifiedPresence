@@ -54,14 +54,14 @@ sudo systemctl enable webserver.service
 #Now you can start the menu system\
 /home/pi/menu.sh
 
-#From here you can start each of the services. Watch for any errors as they start.
-#Option 1 - Start Btcscan. This starts bluetoothctl in scan mode so that BT and BLE signals are captured.
-#Option 11 - Start Webserver. This starts a Python simple http server using port 8001 serving out the directory /home/pi/services/devicemon/webserverEnter your device and user specific information into the devicemon.py file. 
+#From here you can start each of the services. Watch for any errors as they start.\
+#Option 1 - Start Btcscan. This starts bluetoothctl in scan mode so that BT and BLE signals are captured.\
+#Option 11 - Start Webserver. This starts a Python simple http server using port 8001 serving out the directory /home/pi/services/devicemon/webserverEnter your device and user specific information into the devicemon.py file.\ 
 #Option 21 - Start Devicemon. This starts the devicemon.py script and should generate the output file /home/pi/services/devicemon/webserver/unifiedpresence.json. Point a browser to your Raspberry Pi port 8001. For example: http://192.168.0.110:8001 and you should see this file present. You can open the file and check its contents to make sure it is updating approximately once per minute.
 
 #That is all that is required for now on the Pi device.  You can check on the status of the three services using options 4, 14 and 24 of the menu and they should all be running and you should be able to see the output for each of these. Press PgDn for more, q and then enter to exit. If you reboot the Pi all of these services will start automatically.
 
-#Now it's time to configure the SmartThings device.
+#Now it's time to configure the SmartThings device.\
 Locate the code for the Unified Presence device handler in this repository and then "Create New Device Handler" in your SmartThings account. You can now create a new device using the Unified Presence device handler. Let's call it "!Gary Presence" for easy of reference.
 
 On your SmartPhone open up SmartThings Classic and go to your list of Things. Open up "!Gary Presence" and click on the gear in the upper right corner. Here you must enter the following information: IP address for your Raspberry Pi, port (8000) and the name of the person this Presence Monitor will represent. This name must exactly match one of the names you entered in the Python script (it is case sensitive). Change the Auto refresh for now to 1 minute for testing, you can change it back later.
@@ -69,11 +69,11 @@ Save the settings and the information from the JSON file should populated the sc
 
 You can now use this presence sensor in SmartThings in the normal way.
 
-#Secondary Devices
+#Secondary Devices\
 Most homes have more than one person in them so it will often be desireable to have multiple Unified Presence devices in the same household.  SmartThings requires that every device have a unique DNI (device network interface) which is combination of IP address and port represented in a hex format. This is visible via the device properties in the Smartthings web portal. In order to create a secondary device you must therefore have either a different IP or different port.
 While you could have multiple webservers each serving their own port it is easier to simply add additional IP addresses.
 
-You can add additional temporary addresses as follows: 
+You can add additional temporary addresses as follows:\ 
 For Ethernet (preferred)\
 sudo ifconfig eth0:0 192.168.0.50 netmask 255.255.255.0 up\
 sudo ifconfig eth0:1 192.168.0.51 netmask 255.255.255.0 up
