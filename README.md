@@ -5,7 +5,7 @@ Overview: This project consists of two pieces. A Python script with supporting s
 
 I built this using a RPi 4B but have also tested it with a RPi Zero W.  These steps are based on a fresh install (Buster) so may need to be adjusted based on your individual version.
 
-#Network Prep
+#Network Prep\
 You will need a static IP address in order for this to work reliably. You can either configure a static IP but it's probably easier to configure a DHCP reservation. While you are at it I'd recommend creating DHCP reservations for all of the IP devices that you plan to monitor, phones for example. 
 
 Steps to get installing RPi with DeviceMon and WebServer services
@@ -86,3 +86,11 @@ These addresses would be lost once the Pi is rebooted.
 See here on how to add permanent secondary addresses: https://www.garron.me/en/linux/add-secondary-ip-linux.html but it is probably easier just to modify the Webserver startup script to add the additional IP addresses that you need when the webserver is started.
 
 You can now create additional Unified Presence devices for each family member. Just remember that each one must use a unique IP address under the scenario described.
+
+#Limitations\
+This solution operates on a single RPi. Depending on the configuration of the house\apt there may not be an ideal placement that allows BT or BLE signals from any point in the house to reach the Pi. This solution does not yet accomodate adding a second Pi for better coverage.
+
+#Notes\
+In my own testing I have found that different mobile devices respond quite differently, especially when not in use. A ping can always reach my Android phone but my iPad goes to sleep and is mostly unreachable. However it does always respond to bluetooth.\
+Some devices always respond to a directed "ping" of their BT address while others do not unless the device has been paired with the Pi.\
+If a device has the new version (not classic) version of SmartThings installed they can enable "Allow phone presence detection" which is described as: "Allow other devices to know that your phone is nearby using BLE scanning". This should give it broader visibility to the RPi without pairing.
