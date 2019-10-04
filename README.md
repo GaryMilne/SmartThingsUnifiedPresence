@@ -1,7 +1,7 @@
 # SmartThings Unified Presence
 A solution that looks at WiFi, Bluetooth or BLE signals to determine if a given person is present. Presence is marked in SmartThings device handler.
 
-Overview: This project consists of two pieces. A Python script with supporting shell script that nominally runs on a Raspberry Pi. This script is configured with people, devices and device addresses to monitor for presence.  One person may have up to four devices. All the devices must be "out" for the person to be considered to be out. The second piece is a device handler for SmartThings that receives the information via a JSON file and marks the persons presence accordingly.
+Overview: This project consists of two pieces. A Python script with supporting shell script that nominally runs on a Raspberry Pi. This script is configured with people, devices and device addresses to monitor for presence.  One person may have up to four devices. All the devices must be "out" for the person to be considered out. Any one device in and the person is considered in. The second piece is a device handler for SmartThings that receives the information via a JSON file and marks the persons presence accordingly in SmartThings.
 
 I built this using a RPi 4B but have also tested it with a RPi Zero W.  These steps are based on a fresh install (Buster) so may need to be adjusted based on your individual version.
 
