@@ -12,9 +12,9 @@ Steps to get installing RPi with DeviceMon and WebServer services
 #Personally I like to use Microsoft Remote Desktop but its your choice.
 sudo apt-get install xrdp
 
-#Gets everything up to snuff if not already done at install
-\sudo apt-get update
-\sudo apt-get upgrade
+#Gets everything up to snuff if not already done at install\
+sudo apt-get update\
+sudo apt-get upgrade\
 
 #Gets rid of excess junk
 sudo apt autoremove
