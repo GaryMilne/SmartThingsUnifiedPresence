@@ -27,12 +27,12 @@ File: /home/pi/menu.sh\
 Directory: /home/pi/services\
 Change permissions on shell scripts menu.sh and /home/pi/service/devicemon/devicescan.sh to be executable.
 
-#Bluetooth is probably already installed, but if not do this.
+#Bluetooth is probably already installed, but if not do this.\
 #sudo apt-get install bluetooth\
-#sudo apt-get install bluez\
+#sudo apt-get install bluez
 
 #Install the bluetooth libraries\
-sudo apt-get install libbluetooth-dev\
+sudo apt-get install libbluetooth-dev
 
 #Setup bluez for Python\
 sudo apt-get install python-pip python-dev ipython\
