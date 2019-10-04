@@ -62,15 +62,15 @@ sudo systemctl enable webserver.service
 #That is all that is required for now on the Pi device.  You can check on the status of the three services using options 4, 14 and 24 of the menu and they should all be running and you should be able to see the output for each of these. Press PgDn for more, q and then enter to exit. If you reboot the Pi all of these services will start automatically.
 
 #Now it's time to configure the SmartThings device.\
-Locate the code for the Unified Presence device handler in this repository and then "Create New Device Handler" in your SmartThings account. You can now create a new device using the Unified Presence device handler. Let's call it "!Gary Presence" for easy of reference.
+Locate the code for the Unified Presence device handler in this repository and then "Create New Device Handler" in your SmartThings account. You can now create a new device using the Unified Presence device handler. Let's call it "!Bob Presence" for easy of reference.
 
-On your SmartPhone open up SmartThings Classic and go to your list of Things. Open up "!Gary Presence" and click on the gear in the upper right corner. Here you must enter the following information: IP address for your Raspberry Pi, port (8000) and the name of the person this Presence Monitor will represent. This name must exactly match one of the names you entered in the Python script (it is case sensitive). Change the Auto refresh for now to 1 minute for testing, you can change it back later.
-Save the settings and the information from the JSON file should populated the screen. It may take up to 60 seconds the first time. If it has not connected after 60 seconds click on the DNI:XXXX label and then hit refresh. If not connecting check the troubleshooting section.
+On your SmartPhone open up SmartThings Classic and go to your list of Things. Open up "!Bob Presence" and click on the gear in the upper right corner. Here you must enter the following information: IP address for your Raspberry Pi, port (8000) and the name of the person this Presence Monitor will represent (Bob). This name must exactly match one of the names you entered in the Python script (it is case sensitive). Change the Auto refresh for now to 1 minute for testing, you can change it back later. If not connecting check the troubleshooting guide.
 
 You can now use this presence sensor in SmartThings in the normal way.
 
 #Secondary Devices\
 Most homes have more than one person in them so it will often be desireable to have multiple Unified Presence devices in the same household.  SmartThings requires that every device have a unique DNI (device network interface) which is combination of IP address and port represented in a hex format. This is visible via the device properties in the Smartthings web portal. In order to create a secondary device you must therefore have either a different IP or different port.
+
 While you could have multiple webservers each serving their own port it is easier to simply add additional IP addresses.
 
 You can add additional temporary addresses as follows:\ 
