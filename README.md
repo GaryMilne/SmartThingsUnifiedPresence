@@ -9,49 +9,49 @@ I built this using a RPi 4B but have also tested it with a RPi Zero W.  These st
 You will need a static IP address in order for this to work reliably. You can either configure a static IP but it's probably easier to configure a DHCP reservation. While you are at it I'd recommend creating DHCP reservations for all of the IP devices that you plan to monitor, phones for example. 
 
 Steps to get installing RPi with DeviceMon and WebServer services
-#Personally I like to use Microsoft Remote Desktop but its your choice.
+#Personally I like to use Microsoft Remote Desktop but its your choice.\
 sudo apt-get install xrdp
 
 #Gets everything up to snuff if not already done at install\
 sudo apt-get update\
-sudo apt-get upgrade\
+sudo apt-get upgrade
 
-#Gets rid of excess junk
+#Gets rid of excess junk\
 sudo apt autoremove
 
-#Tools for XWindows Manipulation - these are used by menu provided to set the size of the window.
+#Tools for XWindows Manipulation - these are used by menu provided to set the size of the window.\
 sudo apt-get install xdotool
 
-#Copy over the files to /home/pi
-File: /home/pi/menu.sh
-Directory: /home/pi/services
+#Copy over the files to /home/pi\
+File: /home/pi/menu.sh\
+Directory: /home/pi/services\
 Change permissions on shell scripts menu.sh and /home/pi/service/devicemon/devicescan.sh to be executable.
 
 #Bluetooth is probably already installed, but if not do this.
-#sudo apt-get install bluetooth
-#sudo apt-get install bluez
+#sudo apt-get install bluetooth\
+#sudo apt-get install bluez\
 
-#Install the bluetooth libraries
-sudo apt-get install libbluetooth-dev
+#Install the bluetooth libraries\
+sudo apt-get install libbluetooth-dev\
 
-#Setup bluez for Python
-sudo apt-get install python-pip python-dev ipython
-sudo pip install pybluez
+#Setup bluez for Python\
+sudo apt-get install python-pip python-dev ipython\
+sudo pip install pybluez\
 sudo pip3 install pybluez
 
-#Configure the services. This allows all of these to run in the background and the menu.sh makes it easy to stop\start\review each of the services without having to remember anything.  This also ensures that the services will start automatically at boot time. These command create a hard link a service file and then start that service.
-sudo ln /home/pi/services/devicemon/devicemon.service /etc/systemd/system
+#Configure the services. This allows all of these to run in the background and the menu.sh makes it easy to stop\start\review each of the services without having to remember anything.  This also ensures that the services will start automatically at boot time. These command create a hard link a service file and then start that service.\
+sudo ln /home/pi/services/devicemon/devicemon.service /etc/systemd/system\
 sudo systemctl enable devicemon.service
 
-sudo ln /home/pi/services/devicemon/btcscan.service /etc/systemd/system
+sudo ln /home/pi/services/devicemon/btcscan.service /etc/systemd/system\
 sudo systemctl enable btcscan.service
 
-sudo ln /home/pi/services/devicemon/webserver.service /etc/systemd/system
+sudo ln /home/pi/services/devicemon/webserver.service /etc/systemd/system\
 sudo systemctl enable webserver.service
 
 #Now you have to configure the user names, device names and device addresses (Bluetooth\BLE and IP). All of this information is stored near the top of the script /home/pi/services/devicemon/devicemon.py and can be edited using the Thonny Python editor.  You can look at the other settings for scan frequency, timeouts and retries but I'd suggest leaving as is until you have confirmed the basic operation.
 
-#Now you can start the menu system
+#Now you can start the menu system\
 /home/pi/menu.sh
 
 #From here you can start each of the services. Watch for any errors as they start.
@@ -74,12 +74,12 @@ Most homes have more than one person in them so it will often be desireable to h
 While you could have multiple webservers each serving their own port it is easier to simply add additional IP addresses.
 
 You can add additional temporary addresses as follows: 
-For Ethernet (preferred)
-sudo ifconfig eth0:0 192.168.0.50 netmask 255.255.255.0 up
+For Ethernet (preferred)\
+sudo ifconfig eth0:0 192.168.0.50 netmask 255.255.255.0 up\
 sudo ifconfig eth0:1 192.168.0.51 netmask 255.255.255.0 up
 OR
-Wirelass LAN
-sudo ifconfig wlan0:0 192.168.0.50 netmask 255.255.255.0 up
+Wirelass LAN\
+sudo ifconfig wlan0:0 192.168.0.50 netmask 255.255.255.0 up\
 sudo ifconfig wlan0:1 192.168.0.51 netmask 255.255.255.0 up
 These addresses would be lost once the Pi is rebooted.
 
