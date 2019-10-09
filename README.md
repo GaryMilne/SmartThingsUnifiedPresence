@@ -6,10 +6,10 @@ Overview: This project consists of two pieces. A Python script with supporting s
 I built this using a RPi 4B but have also tested it with a RPi Zero W.  These steps are based on a fresh install (Buster) so may need to be adjusted based on your individual version.
 
 #Network Prep\
-You will need a static IP address in order for this to work reliably. You can either configure a static IP but it's probably easier to configure a DHCP reservation. While you are at it I'd recommend creating DHCP reservations for all of the IP devices that you plan to monitor, phones for example. 
+You will need a static IP address in order for this to work reliably. You can either configure a static IP or use a DHCP reservation. While you are at it I'd recommend creating DHCP reservations for all of the IP devices that you plan to monitor, phones for example. 
 
 Steps to get installing RPi with DeviceMon and WebServer services
-#Personally I like to use Microsoft Remote Desktop but its your choice.\
+#Personally I like to use Microsoft Remote Desktop but its your choice. Its not required but it makes the inst\
 sudo apt-get install xrdp
 
 #Gets everything up to snuff if not already done at install\
@@ -22,12 +22,10 @@ sudo apt autoremove
 #Tools for XWindows Manipulation - these are used by menu provided to set the size of the window.\
 sudo apt-get install xdotool
 
-#Copy over the files to /home/pi\
-File: /home/pi/menu.sh\
-Directory: /home/pi/services\
-Change permissions on shell scripts menu.sh and /home/pi/service/devicemon/devicescan.sh to be executable.
+#Copy over the services directory to /home/pi so the full patch is /home/pi/services\
+Change permissions on shell scripts /hom/pi/services/menu.sh and /home/pi/service/devicemon/devicescan.sh to be executable.
 
-#Bluetooth is probably already installed, but if not do this.\
+#luetooth is probably already installed, but if not do this.\
 #sudo apt-get install bluetooth\
 #sudo apt-get install bluez
 
@@ -52,7 +50,7 @@ sudo systemctl enable webserver.service
 #Now you have to configure the user names, device names and device addresses (Bluetooth\BLE and IP). All of this information is stored near the top of the script /home/pi/services/devicemon/devicemon.py and can be edited using the Thonny Python editor.  You can look at the other settings for scan frequency, timeouts and retries but I'd suggest leaving as is until you have confirmed the basic operation.
 
 #Now you can start the menu system\
-/home/pi/menu.sh
+/home/pi/services/menu.sh
 
 #From here you can start each of the services. Watch for any errors as they start.\
 #Option 1 - Start Btcscan. This starts bluetoothctl in scan mode so that BT and BLE signals are captured.\
@@ -64,12 +62,12 @@ sudo systemctl enable webserver.service
 #Now it's time to configure the SmartThings device.\
 Locate the code for the Unified Presence device handler in this repository and then "Create New Device Handler" in your SmartThings account. You can now create a new device using the Unified Presence device handler. Let's call it "!Bob Presence" for easy of reference.
 
-On your SmartPhone open up SmartThings Classic and go to your list of Things. Open up "!Bob Presence" and click on the gear in the upper right corner. Here you must enter the following information: IP address for your Raspberry Pi, port (8000) and the name of the person this Presence Monitor will represent (Bob). This name must exactly match one of the names you entered in the Python script (it is case sensitive). Change the Auto refresh for now to 1 minute for testing, you can change it back later. If not connecting check the troubleshooting guide.
+On your SmartPhone open up SmartThings Classic and go to your list of Things. Open up "!Bob Presence" and click on the gear in the upper right corner. Here you must enter the following information: IP address for your Raspberry Pi, port (8000) and the name of the person this Presence Monitor will represent (Bob). This name must exactly match one of the names you entered in the Python script (it is case sensitive). Change the Auto refresh for now to 1 minute for testing, you can change it back later. If not connecting check the troubleshooting guide in the PDF file.
 
 You can now use this presence sensor in SmartThings in the normal way.
 
 #Secondary Devices\
-Most homes have more than one person in them so it will often be desireable to have multiple Unified Presence devices in the same household.  SmartThings requires that every device have a unique DNI (device network interface) which is combination of IP address and port represented in a hex format. This is visible via the device properties in the Smartthings web portal. In order to create a secondary device you must therefore have either a different IP or different port.
+Most homes have more than one person in them so it will often be desireable to have multiple Unified Presence devices in the same household.  SmartThings requires that every device have a unique DNI (device network interface) which is combination of IP address and port represented in a hex format for IP devices. This is visible via the device properties in the Smartthings web portal. In order to create a secondary device you must therefore have either a different IP or different port.
 
 While you could have multiple webservers each serving their own port it is easier to simply add additional IP addresses.
 
@@ -91,6 +89,6 @@ You can now create additional Unified Presence devices for each family member. J
 This solution operates on a single RPi. Depending on the configuration of the house\apt there may not be an ideal placement that allows BT or BLE signals from any point in the house to reach the Pi. This solution does not yet accomodate adding a second Pi for better coverage.
 
 #Notes\
-In my own testing I have found that different mobile devices respond quite differently, especially when not in use. A ping can always reach my Android phone but my iPad goes to sleep and is mostly unreachable. However it does always respond to bluetooth.\
+In my own testing I have found that different mobile devices respond quite differently, especially when not in use. A ping can always reach my Android phone but my iPad goes to sleep and is mostly unreachable. However my iPad does always respond to bluetooth.\
 Some devices always respond to a directed "ping" of their BT address while others do not unless the device has been paired with the Pi.\
 If a device has the new version (not classic) version of SmartThings installed they can enable "Allow phone presence detection" which is described as: "Allow other devices to know that your phone is nearby using BLE scanning". This should give it broader visibility to the RPi without pairing.
