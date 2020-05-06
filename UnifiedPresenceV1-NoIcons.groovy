@@ -139,7 +139,7 @@ def initialize(){
         case 1: runEvery1Minute(getstatus) ; sendEvent(name: "poll", value: "1️", displayed:false) ;break;
         case 5: runEvery5Minutes(getstatus) ; sendEvent(name: "poll", value: "5️", displayed:false) ; break;
         case 10: runEvery10Minutes(getstatus) ; sendEvent(name: "poll", value: "10", displayed:false) ; break;
-        default: runEvery10Minutes(getstatus) ; sendEvent(name: "poll", value: "5️", displayed:false) ;break;
+        default: runEvery5Minutes(getstatus) ; sendEvent(name: "poll", value: "5", displayed:false) ;break;
     } 
     getstatus()
 }
