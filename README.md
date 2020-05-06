@@ -10,8 +10,8 @@ I built this using a RPi 4B but it runs in production on an RPi Zero W. These st
 #Network Prep\
 You will need a static IP address in order for this to work reliably. You can either configure a static IP or use a DHCP reservation. While you are at it I'd recommend creating DHCP reservations for all of the IP devices that you plan to monitor, phones for example. 
 
-Steps to get installing RPi with DeviceMon and WebServer services
-#Personally, I like to use Microsoft Remote Desktop but it’s your choice. It’s not required but it makes the installation and editing of #the details in the Python script a little easier but you could use a terminal session and nano to edit the file.\
+Steps to get installing RPi with DeviceMon and WebServer services\
+#Personally, I like to use Microsoft Remote Desktop but it’s your choice. It’s not required but it makes the installation and editing of the details in the Python script a little easier but you could use a terminal session and nano to edit the file.\
 sudo apt-get install xrdp
 
 #Gets everything up to snuff if not already done at install\
